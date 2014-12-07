@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HelloButtonJAO</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="message_start">You have not clicked the button</string>
+    <string name="message_format">You have clicked the button %d times</string>
+    <string name="button_text">Press me!</string>
+    
+</resources>
