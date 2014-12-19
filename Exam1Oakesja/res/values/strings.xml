@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Exam1Oakesja</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="starting_message">Record a button sequence</string>
+    <string name="formatted_message">You pressed%s</string>
+    <string name="reset">Reset</string>
+    <string name="title">Memory Tool by Jacob Oakes</string>
+
+</resources>

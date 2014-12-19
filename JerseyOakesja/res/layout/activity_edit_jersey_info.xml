@@ -1,0 +1,88 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/name"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editJerseyName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/textView1"
+        android:layout_alignStart="@id/textView1"
+        android:layout_below="@id/textView1"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:text="@string/start_name"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/editJerseyName"
+        android:layout_alignStart="@id/editJerseyName"
+        android:layout_below="@id/editJerseyName"
+        android:layout_marginTop="10dp"
+        android:text="@string/number"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editJerseyNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/TextView01"
+        android:layout_alignStart="@id/TextView01"
+        android:layout_below="@id/TextView01"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:text="@string/start_number"
+        android:inputType="number" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editJerseyNum"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp" >
+
+        <ToggleButton
+            android:id="@+id/jerseryColorButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="@string/red_jersey"
+    		android:textOff="@string/blue_jersey"/>
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel" />
+
+        <Button
+            android:id="@+id/okButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ok" />
+    </LinearLayout>     
+</RelativeLayout>

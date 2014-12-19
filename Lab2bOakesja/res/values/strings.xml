@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Lab2bOakesja</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="yellow">Yellow</string>
+    <string name="blue">Blue</string>
+    <string name="row1">row one</string>
+    <string name="row2">row two</string>
+    <string name="row3">row three</string>
+    <string name="row4">row four</string>
+
+</resources>

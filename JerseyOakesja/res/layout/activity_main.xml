@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <ImageView
+        android:id="@+id/jerseyImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/red_jersey" />
+
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="15dp"
+        android:text="@string/edit" />
+
+    <TextView
+        android:id="@+id/jerseyNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/start_number"
+        android:textColor="@color/text"
+        android:textSize="100sp" />
+
+    <TextView
+        android:id="@+id/jerseyNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/jerseyNumberTextView"
+        android:layout_centerHorizontal="true"
+        android:text="@string/start_name"
+        android:textColor="@color/text"
+        android:textSize="40sp" />
+
+</RelativeLayout>
