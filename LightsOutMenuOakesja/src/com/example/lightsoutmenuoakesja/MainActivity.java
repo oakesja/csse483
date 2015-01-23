@@ -2,6 +2,7 @@ package com.example.lightsoutmenuoakesja;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainActivity extends Activity implements OnClickListener {
+	private static final String PREFS = "PREFS";
 	private Button playButton;
 	private Button changeButton;
 	private Button aboutButton;
@@ -30,6 +32,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		aboutButton = (Button) findViewById(R.id.aboutButton);
 		exitButton = (Button) findViewById(R.id.closeButton);
 
+//		SharedPreferences prefs = getSharedPreferences(PREFS, MODE_PRIVATE);
+//		mNumButtons = prefs.getInt(KEY_NUM_BUTTONS, 7);
+		if (savedInstanceState != null) {
+	        // Restore value of members from saved state
+	        mNumButtons = savedInstanceState.getInt(KEY_NUM_BUTTONS);
+			playButton.setText(getString(R.string.play_button_format, mNumButtons));
+		}
+
 		playButton.setOnClickListener(this);
 		changeButton.setOnClickListener(this);
 		aboutButton.setOnClickListener(this);
@@ -41,12 +51,17 @@ public class MainActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.playButton:
 			Log.d(LOM, "Play button clicked");
+			Intent playIntent = new Intent(this, LightsOutActivity.class);
+			playIntent.putExtra(KEY_NUM_BUTTONS, mNumButtons);
+			startActivity(playIntent);
 			break;
 		case R.id.changeButton:
 			Log.d(LOM, "Change button clicked");
-			Intent changeButtonsActivity = new Intent(this, ChangeNumButtonsActivity.class);
+			Intent changeButtonsActivity = new Intent(this,
+					ChangeNumButtonsActivity.class);
 			changeButtonsActivity.putExtra(KEY_NUM_BUTTONS, mNumButtons);
-			startActivityForResult(changeButtonsActivity,  REQUEST_CODE_CHANGE_BUTTON);
+			startActivityForResult(changeButtonsActivity,
+					REQUEST_CODE_CHANGE_BUTTON);
 			break;
 		case R.id.aboutButton:
 			Log.d(LOM, "About button clicked");
@@ -59,25 +74,40 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 	}
-	
-	protected void onActivityResult(int requestCode, int resultCode, Intent data){
-	    // See which child activity is calling us back. 
-	    switch (requestCode) {
-	        case REQUEST_CODE_CHANGE_BUTTON:
-	            if (resultCode == Activity.RESULT_OK){
-	                Log.d(LOM, "Result ok!");
-	                int num = data.getIntExtra(KEY_NUM_BUTTONS, -1);
-	                String s = getString(R.string.play_button_format, num);
-	                playButton.setText(s);
-	            } 
-	            else {
-	                Log.d(LOM, "Result not okay.  User hit back without a button");
-	            }
-	            break;
-	        default:
-	            Log.d(LOM, "Unknown result code");
-	            break;
-	    }
+
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// See which child activity is calling us back.
+		switch (requestCode) {
+		case REQUEST_CODE_CHANGE_BUTTON:
+			if (resultCode == Activity.RESULT_OK) {
+				Log.d(LOM, "Result ok!");
+				mNumButtons = data.getIntExtra(KEY_NUM_BUTTONS, -1);
+				String s = getString(R.string.play_button_format, mNumButtons);
+				playButton.setText(s);
+			} else {
+				Log.d(LOM, "Result not okay.  User hit back without a button");
+			}
+			break;
+		default:
+			Log.d(LOM, "Unknown result code");
+			break;
+		}
+	}
+
+	// @Override
+	// protected void onPause() {
+	// super.onPause();
+	// SharedPreferences prefs = getSharedPreferences(PREFS, MODE_PRIVATE);
+	// SharedPreferences.Editor editor = prefs.edit();
+	// editor.putInt(KEY_NUM_BUTTONS, mNumButtons);
+	// editor.commit();
+	// }
+
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+		Log.d(LOM, "save num buttons " + mNumButtons);
+		savedInstanceState.putInt(KEY_NUM_BUTTONS, mNumButtons);
+		super.onSaveInstanceState(savedInstanceState);
 	}
 
 }

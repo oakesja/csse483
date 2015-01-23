@@ -31,6 +31,10 @@
             android:name=".ChangeNumButtonsActivity"
             android:label="@string/title_activity_change_num_buttons" >
         </activity>
+        <activity
+            android:name=".LightsOutActivity"
+            android:label="@string/title_activity_lights_out" >
+        </activity>
     </application>
 
 </manifest>

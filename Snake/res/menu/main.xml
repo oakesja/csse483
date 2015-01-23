@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/moveLeft"
+        android:icon="@drawable/ic_left_arrow"
+        android:showAsAction="always"
+        android:title="@string/moveLeft"/>
+    <item
+        android:id="@+id/moveRight"
+        android:icon="@drawable/ic_right_arrow"
+        android:showAsAction="always"
+        android:title="@string/moveRight"/>
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/ic_menu_more"
+        android:showAsAction="always"
+        android:title="@string/settings">
+        <menu>
+            <group android:id="@+id/group1" >
+                <item
+                    android:id="@+id/resume"
+                    android:title="@string/resume"/>
+                <item
+                    android:id="@+id/changeSpeed"
+                    android:title="@string/changeSpeed">
+                    <menu>
+                        <group
+                            android:id="@+id/group2"
+                            android:checkableBehavior="single" >
+                             >
+                            <item
+                                android:id="@+id/slowSpeed"
+                                android:title="@string/slow"/>
+                            <item
+                                android:id="@+id/mediumSpeed"
+                                android:title="@string/medium"/>
+                            <item
+                                android:id="@+id/fastSpeed"
+                                android:title="@string/fast"/>
+                        </group>
+                    </menu>
+/>
+                    <item
+                        android:id="@+id/settingsSubMenu"
+                        android:title="@string/settings"/>
+                </item>
+            </group>
+        </menu>
+    </item>
+
+</menu>
