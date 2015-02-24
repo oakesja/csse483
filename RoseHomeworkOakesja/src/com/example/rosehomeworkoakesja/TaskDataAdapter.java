@@ -39,7 +39,7 @@ public class TaskDataAdapter {
 	public void close() {
 		mDatabase.close();
 	}
-	
+
 	private ContentValues getContentValuesFromTask(Task score) {
 		ContentValues row = new ContentValues();
 		row.put(KEY_NAME, score.getName());
@@ -49,39 +49,42 @@ public class TaskDataAdapter {
 		row.put(KEY_DAY, score.getDayDue());
 		return row;
 	}
-	
-	public void addTask(Task task){
+
+	public void addTask(Task task) {
 		ContentValues row = getContentValuesFromTask(task);
 		long rowId = mDatabase.insert(TABLE_NAME, null, row);
 		task.setId(rowId);
 	}
-	
-	public void deleteTask(Task task){
+
+	public void deleteTask(Task task) {
 		mDatabase.delete(TABLE_NAME, KEY_ID + " = " + task.getId(), null);
 	}
-	
-	public void setAllTasks(ArrayList<Task> tasks){
+
+	public void setAllTasks(ArrayList<Task> tasks) {
 		String[] columns = null;
-		Cursor cursor = mDatabase.query(TABLE_NAME, columns, null, null, null, null, null);
-		if(cursor == null || !cursor.moveToFirst()){
+		Cursor cursor = mDatabase.query(TABLE_NAME, columns, null, null, null,
+				null, null);
+		if (cursor == null || !cursor.moveToFirst()) {
 			return;
 		}
 		tasks.clear();
-		while (cursor.moveToNext()) {
+		do {
 			tasks.add(getTaskFromCursor(cursor));
-		}
+		} while ((cursor.moveToNext()));
 		Collections.sort(tasks);
 		Log.d(DEBUG, "all tasks size: " + tasks.size());
 	}
-	
-	public Task getTaskFromCursor(Cursor cursor){
+
+	public Task getTaskFromCursor(Cursor cursor) {
 		String name = cursor.getString(cursor.getColumnIndexOrThrow(KEY_NAME));
-		String course = cursor.getString(cursor.getColumnIndexOrThrow(KEY_COURSE));
+		String course = cursor.getString(cursor
+				.getColumnIndexOrThrow(KEY_COURSE));
 		int year = cursor.getInt(cursor.getColumnIndexOrThrow(KEY_YEAR));
 		int month = cursor.getInt(cursor.getColumnIndexOrThrow(KEY_MONTH));
 		int date = cursor.getInt(cursor.getColumnIndexOrThrow(KEY_DAY));
 		long id = cursor.getLong(cursor.getColumnIndexOrThrow(KEY_ID));
-		Task task = new Task(name, course, new GregorianCalendar(year, month, date));
+		Task task = new Task(name, course, new GregorianCalendar(year, month,
+				date));
 		task.setId(id);
 		Log.d(DEBUG, "get from cursor: " + task.toString());
 		return task;
@@ -106,10 +109,12 @@ public class TaskDataAdapter {
 
 		public TaskDbHelper(Context context) {
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
+			Log.d("EXAM", "constructor");
 		}
 
 		@Override
 		public void onCreate(SQLiteDatabase db) {
+			Log.d("EXAM", "create");
 			db.execSQL(CREATE_STATEMENT);
 		}
 
